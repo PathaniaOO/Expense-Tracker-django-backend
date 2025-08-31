@@ -1,0 +1,210 @@
+@host=http://127.0.0.1:8000
+@access=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzU2NjI0MzIxLCJpYXQiOjE3NTY2MjA3MjEsImp0aSI6ImQxZTZmYjRmMWM1YjQzMzc4NTQyNzdhZDIxOTczZjA5IiwidXNlcl9pZCI6IjEifQ.FRES-L9YFurG_Ft3tC_AA6qHlFN7X10eWQohY-6EXms
+@refresh=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc1NzEwMjc1NiwiaWF0IjoxNzU2NDk3OTU2LCJqdGkiOiJhMzNiYWY0N2M3ZWE0YzA5YTQ0M2I2ZjZlZjg4ZThkMyIsInVzZXJfaWQiOiIxIn0.cNDn6Lwsh7QwK2Qxtwh7Iz05YaDSZ8HLFsbsYOYbXOk
+###
+POST {{host}}/api/auth/login/ HTTP/1.1
+Content-Type: application/json
+
+{
+    "username": "andre",
+    "password": "test"
+}
+
+###
+POST {{host}}/api/auth/register/ HTTP/1.1
+Content-Type: application/json
+
+{
+    "username": "huna",
+    "password": "test1honda"
+}
+
+###
+POST {{host}}/api/auth/logout/ HTTP/1.1
+Authorization: Bearer {{access}}
+Content-Type: application/json
+
+{
+    "refresh": "{{refresh}}"
+}
+
+###
+POST {{host}}/api/categories/ HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{access}}
+
+{
+  "name": "Food"
+}
+
+
+###
+POST {{host}}/api/categories/ HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{access}}
+
+{
+  "name": "Travel"
+}
+
+###
+POST {{host}}/api/accounts/ HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{access}}
+
+{
+  "name": "SBI Savings",
+  "balance": "10000.00"
+}
+
+###
+POST {{host}}/api/accounts/ HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{access}}
+
+{
+  "name": "HDFC Savings",
+  "balance": "10000.00"
+}
+
+###
+POST {{host}}/api/incomes/ HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{access}}
+
+{
+  "description": "Salary",
+  "amount": "5000.00",
+  "account": 1
+}
+
+###
+POST {{host}}/api/incomes/ HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{access}}
+
+{
+  "description": "Salary",
+  "amount": "5000.00",
+  "account": 2
+}
+
+
+###
+POST {{host}}/api/expenses/ HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{access}}
+
+{
+  "description": "Groceries",
+  "amount": "2000.00",
+  "category": 1,
+  "account": 1
+}
+
+###
+    POST {{host}}/api/expenses/ HTTP/1.1
+    Content-Type: application/json
+    Authorization: Bearer {{access}}
+
+    {
+      "description": "Bus tickets",
+      "amount": "2000.00",
+      "category": 2,
+      "account": 1
+    }
+
+###
+POST {{host}}/api/expenses/ HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{access}}
+
+{
+  "description": "Bike Rental",
+  "amount": "2000.00",
+  "category": 4,
+  "account": 4
+}
+
+###
+PATCH {{host}}/api/expenses/5/ HTTP/1.1
+Authorization: Bearer {{access}}
+Content-Type: application/json
+
+{
+  "description": "Bike Rental - Updated",
+  "amount": "2500.00",
+  "category": 4,
+  "account": 4
+}
+
+###
+PATCH {{host}}/api/expenses/5/ HTTP/1.1
+Authorization: Bearer {{access}}
+Content-Type: application/json
+
+{
+  "description": "Bike Rental - Updated",
+  "amount": "2500.00",
+  "category": 4,
+  "account": 4
+}
+
+
+
+###
+POST {{host}}/api/transfers/salary/random/ HTTP/1.1
+Authorization: Bearer {{access}}
+Content-Type: application/json
+
+{
+  "account": 1,
+  "min": "40000",
+  "max": "80000"
+}
+
+###
+POST {{host}}/api/transfers/salary/random/ HTTP/1.1
+Authorization: Bearer {{access}}
+Content-Type: application/json
+
+{
+  "account": 2,
+  "min": "10000",
+  "max": "80000"
+}
+
+###
+GET {{host}}/api/expenses/ HTTP/1.1
+Authorization: Bearer {{access}}
+
+###
+GET {{host}}/api/accounts/ HTTP/1.1
+Authorization: Bearer {{access}}
+
+###
+GET {{host}}/api/incomes/ HTTP/1.1
+Authorization: Bearer {{access}}
+
+###
+GET {{host}}/api/incomes/total/ HTTP/1.1
+Authorization: Bearer {{access}}
+###
+GET {{host}}/api/expenses/totals_by_category/ HTTP/1.1
+Authorization: Bearer {{access}}
+
+###
+GET {{host}}/api/expenses/monthly-cashflow/?start=2025-01-01&end=2025-12-31&by=account HTTP/1.1
+Authorization: Bearer {{access}}
+
+###
+GET {{host}}/api/expenses/monthly-cashflow/?start=2025-01-01&end=2025-12-31&by=category HTTP/1.1
+Authorization: Bearer {{access}}
+
+###
+GET {{host}}/api/expenses/monthly-cashflow/?start=2025-01-01&end=2025-12-31&by=account_category HTTP/1.1
+Authorization: Bearer {{access}}
+
+###
+GET {{host}}/api/summary/ HTTP/1.1
+Authorization: Bearer {{access}}
